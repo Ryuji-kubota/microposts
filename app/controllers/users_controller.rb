@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  #before_action :logged_in_user
+  before_action :logged_in_user, only: [:edit, :update]
+  
   def show # 追加
    @user = User.find(params[:id])
    @microposts = @user.microposts.order(created_at: :desc)
@@ -16,6 +19,16 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+  
+  def followings
+   @user = User.find(params[:id])
+   @following = @user.following_users
+  end  
+  
+  def followers
+   @user = User.find(params[:id])
+   @follower = @user.follower_users
   end
   
   private
