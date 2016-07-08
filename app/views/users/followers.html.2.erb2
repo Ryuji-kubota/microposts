@@ -1,0 +1,4 @@
+<h1>フォロワー一覧</h1>
+<% @follower.each do |follower| %>
+ <p><%= follower.name %></p>
+<% end %>
